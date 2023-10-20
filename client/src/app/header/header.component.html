@@ -1,0 +1,32 @@
+<header class="site-header">
+    <div class="site-identity">
+        <a href="#"><img src="./assets/img/logo.svg" alt="Site Name" /></a>
+    </div>
+    <div class="menu-icon">
+        <button mat-button class="menu-button" (click)="sidenav.toggle()">
+            <mat-icon>{{ isMenuOpen ? 'menu_open' : 'menu' }}</mat-icon>
+        </button>
+    </div>
+    <nav class="site-navigation">
+        <ul class="nav">
+            <li><a>Início</a></li>
+            <li><a href="#">Formas pagamento</a></li>
+            <li><a href="#">Horários</a></li>
+            <li><a href="#">Contato</a></li>
+        </ul>
+    </nav>
+</header>
+
+<mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #sidenav autoFocus="false" mode="over" [(opened)]="isMenuOpen" class="sidenav" position="end">
+        <a mat-button routerLink="/">Inicio</a>
+        <a mat-button routerLink="/page2">Formas pagamento</a>
+        <a mat-button routerLink="/page3">Horários</a>
+        <a mat-button routerLink="/page4">Contato</a>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <main>
+            <router-outlet></router-outlet>
+        </main>
+    </mat-sidenav-content>
+</mat-sidenav-container>
