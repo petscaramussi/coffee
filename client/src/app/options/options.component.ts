@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ProductService } from '../services/product.service';
+import { Product } from '../models/product';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-options',
@@ -6,11 +9,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./options.component.css']
 })
 export class OptionsComponent implements OnInit{
-    ngOnInit(): void {
-      
+    products: Product[] = [];
+
+    constructor(private productService: ProductService) {
+
     }
 
-    itens: [] = [];
+    ngOnInit(): void {
+      this.productService.getProducts().subscribe({
+        next: response => {this.products = response; console.log(this.products);},
+        error: error => console.log(error)
+      });
+    }
+
+
 
 
 }

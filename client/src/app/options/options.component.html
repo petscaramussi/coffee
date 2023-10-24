@@ -9,25 +9,6 @@
                 <div class="food-card-name">bebidas</div>
             </div>
         </div>
-
-        <div class="food-card">
-            <div class="content">
-                <div class="food-card-img">
-                    <img src="https://cdn-icons-png.flaticon.com/512/3132/3132693.png" />
-                </div>
-                <div class="food-card-name">Capuccino</div>
-            </div>
-        </div>
-
-        <div class="food-card">
-            <div class="content">
-                <div class="food-card-img">
-                    <img src="https://cdn-icons-png.flaticon.com/512/3132/3132693.png" />
-                </div>
-                <div class="food-card-name">café</div>
-            </div>
-        </div>
-    </div>
 </div>
 
 <br><br>
@@ -35,31 +16,16 @@
 <div class="content">
     <span class="select-text">Inserir Titulo</span>
     <div class="grid-container">
-        <div class="card-list">
+        <div class="card-list" *ngFor="let product of products">
             <div class="content-list">
-                <div class="food-card-name" style="color: #000">teste</div>
-                <div class="food-card-name" style="font-size: 1.0rem">teste</div>
-                <div class="food-card-name" style="color: #000">R$ 70,00</div>
-            </div>
-        </div>
-
-        <div class="card-list">
-            <div class="content-list">
-                <div class="food-card-name" style="color: #000">teste</div>
-                <div class="food-card-name" style="font-size: 1.0rem">teste</div>
-                <div class="food-card-name" style="color: #000">R$ 70,00</div>
-            </div>
-        </div>
-
-        <div class="card-list">
-            <div class="content-list">
-                <div class="food-card-name" style="color: #000">teste</div>
-                <div class="food-card-name" style="font-size: 1.0rem">teste</div>
-                <div class="food-card-name" style="color: #000">R$ 70,00</div>
+                <div class="food-card-name" style="color: #000">{{product.name}}</div>
+                <div class="food-card-name" style="font-size: 1.0rem">{{product.description}}</div>
+                <div class="food-card-name" style="color: #000">{{product.price | currency:'BRL':true:'1.2-2'}}</div>
             </div>
         </div>
     </div>
 </div>
+
 
 
 
