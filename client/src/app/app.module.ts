@@ -8,10 +8,12 @@ import { HeaderComponent } from './header/header.component';
 
 import {MatSidenavModule} from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
+import { OptionsComponent } from './options/options.component';
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent
+    HeaderComponent,
+    OptionsComponent
   ],
   imports: [
     BrowserModule,
