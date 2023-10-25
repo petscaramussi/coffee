@@ -17,9 +17,9 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<Product>>> GetProducts()
+        public async Task<ActionResult<List<Product>>> GetProducts(int? TypeId)
         {
-            var products = await _repo.GetProductsAsync();
+            var products = await _repo.GetProductsAsync(TypeId);
 
             return Ok(products);
         }

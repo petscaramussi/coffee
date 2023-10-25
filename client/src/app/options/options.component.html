@@ -1,12 +1,12 @@
 <div class="content">
     <span class="select-text">Cardápio</span>
     <div class="row">
-        <div class="food-card">
+        <div class="food-card" *ngFor="let type of types" (click)="filterProducts(type.id)">
             <div class="content">
                 <div class="food-card-img">
-                    <img src="https://cdn-icons-png.flaticon.com/512/3132/3132693.png" />
+                    <img src="" />
                 </div>
-                <div class="food-card-name">bebidas</div>
+                <div class="food-card-name">{{type.name}}</div>
             </div>
         </div>
 </div>

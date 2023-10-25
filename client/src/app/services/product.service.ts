@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, Type } from '@angular/core';
 import { Product } from '../models/product';
+import { itemTypes } from '../models/itemType';
 
 @Injectable({
   providedIn: 'root'
@@ -12,5 +13,13 @@ export class ProductService {
 
   getProducts() {
     return this.http.get<Product[]>(this.baseUrl + 'products');
+  }
+
+  getProductByType(itemId: number) {
+    return this.http.get<Product[]>(this.baseUrl + 'products?TypeId=' + itemId);
+  }
+
+  getTypes() {
+    return this.http.get<itemTypes[]>(this.baseUrl + 'products/types');
   }
 }
