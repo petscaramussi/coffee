@@ -2,7 +2,7 @@
     display: flex;
     margin-bottom: 1%;
     border-radius: 1rem;
-    overflow-y: auto;
+    overflow: hidden;
 }
 
 .food-card {
@@ -83,3 +83,11 @@ img {
         margin-bottom: 2%;
     }
 }
+
+@media (min-width:700px) {
+   .row {
+    justify-content: center;
+   }
+}
+
+

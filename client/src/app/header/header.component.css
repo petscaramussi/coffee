@@ -75,5 +75,8 @@ li {
     .menu-icon{
         display: none;
     }
+    .nav li {
+        color: #fff;
+    }
 }
 
