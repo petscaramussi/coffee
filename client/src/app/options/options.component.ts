@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { ProductService } from '../services/product.service';
 import { Product } from '../models/product';
 import { HttpClient } from '@angular/common/http';
@@ -9,9 +9,10 @@ import { itemTypes } from '../models/itemType';
   templateUrl: './options.component.html',
   styleUrls: ['./options.component.css']
 })
-export class OptionsComponent implements OnInit{
+export class OptionsComponent implements OnInit {
     products: Product[] = [];
     types: itemTypes[] = [];
+    optionSelected: string = "Todos";
 
     constructor(private productService: ProductService) {
 
@@ -29,13 +30,19 @@ export class OptionsComponent implements OnInit{
       this.productService.getTypes().subscribe({
         next: response => {this.types = response; console.log(this.types);},
         error: error => console.log(error)
-      })
+      });
+
+
+
     }
 
     filterProducts(itemId: number) {
       this.productService.getProductByType(itemId).subscribe({
-        next: response => {this.products = response; console.log(response)}
-      })
+        next: response => {this.products = response; console.log(response); this.optionSelected = this.types.filter(function(itm) {
+          return itemId == itm.id
+        })[0].name; console.log(this.optionSelected)}
+      });
+
     }
 
 

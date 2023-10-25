@@ -1,10 +1,10 @@
 <div class="content">
-    <span class="select-text">Cardápio</span>
+    
     <div class="row">
         <div class="food-card" *ngFor="let type of types" (click)="filterProducts(type.id)">
             <div class="content">
                 <div class="food-card-img">
-                    <img src="" />
+                    <img src="{{type.imgUrl}}" />
                 </div>
                 <div class="food-card-name">{{type.name}}</div>
             </div>
@@ -14,7 +14,7 @@
 <br><br>
 
 <div class="content">
-    <span class="select-text">Inserir Titulo</span>
+    <span class="select-text">{{optionSelected}}</span>
     <div class="grid-container">
         <div class="card-list" *ngFor="let product of products">
             <div class="content-list">
