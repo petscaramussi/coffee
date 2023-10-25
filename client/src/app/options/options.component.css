@@ -6,7 +6,7 @@
 }
 
 .food-card {
-    background: #997950;
+    background: #3e3534;
     border-radius: 1rem;
     text-align: center;
     margin-right: 3%;
@@ -22,7 +22,12 @@ img {
     width: 80px;
 }
 
-.food-card .food-card-name {
+.all {
+    margin-left: 3%;
+    margin-right: 3%;
+}
+
+.food-card-name {
     font-size: 1rem;
     font-weight: 400;
     text-transform: capitalize;
@@ -40,9 +45,8 @@ img {
     margin-top: 3%;
 }
 .card-list {
-    background: #997950;
+    background: #3e3534;
     padding: 15px;
-    border: 1px solid #f2f2f2;
     box-shadow: 0 1px 4px rgb(0 0 0 / 5%);
     border-radius: 4px;
 }
@@ -68,6 +72,11 @@ img {
 @media (max-width:700px) {
     .grid-container {
         display: block;
+        padding: 5px;
+    }
+
+    .card-list {
+        margin-bottom: 4%;
     }
     
     .food-card{

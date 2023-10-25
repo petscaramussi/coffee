@@ -3,9 +3,9 @@
         <h1>Coffe Shop</h1>
     </div>
     <div class="menu-icon">
-        <button mat-button class="menu-button" (click)="sidenav.toggle()">
-            <mat-icon>{{ isMenuOpen ? 'menu_open' : 'menu' }}</mat-icon>
-        </button>
+        <div (click)="sidenav.toggle()">
+            <mat-icon class="icon-display">{{ isMenuOpen ? 'menu_open' : 'menu' }}</mat-icon>
+        </div>
     </div>
     <nav class="site-navigation">
         <ul class="nav">
@@ -24,9 +24,4 @@
         <a mat-button routerLink="/page3">Horários</a>
         <a mat-button routerLink="/page4">Contato</a>
     </mat-sidenav>
-    <mat-sidenav-content>
-        <main>
-            <router-outlet></router-outlet>
-        </main>
-    </mat-sidenav-content>
 </mat-sidenav-container>

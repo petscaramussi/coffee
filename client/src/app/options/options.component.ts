@@ -1,7 +1,6 @@
-import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../services/product.service';
 import { Product } from '../models/product';
-import { HttpClient } from '@angular/common/http';
 import { itemTypes } from '../models/itemType';
 
 @Component({
@@ -10,40 +9,51 @@ import { itemTypes } from '../models/itemType';
   styleUrls: ['./options.component.css']
 })
 export class OptionsComponent implements OnInit {
-    products: Product[] = [];
-    types: itemTypes[] = [];
-    optionSelected: string = "Todos";
 
-    constructor(private productService: ProductService) {
+  products: Product[] = [];
+  types: itemTypes[] = [];
+  optionSelected: string = "Todos";
+  selected: boolean[] = [false, false, false];
 
-    }
+  constructor(private productService: ProductService) {
 
-    ngOnInit(): void {
+  }
 
-      // get all products
-      this.productService.getProducts().subscribe({
-        next: response => {this.products = response; console.log(this.products);},
-        error: error => console.log(error)
-      });
+  ngOnInit(): void {
 
-      // get all types
-      this.productService.getTypes().subscribe({
-        next: response => {this.types = response; console.log(this.types);},
-        error: error => console.log(error)
-      });
+    // get all products
+    this.productService.getProducts().subscribe({
+      next: response => { this.products = response; console.log(this.products); },
+      error: error => console.log(error)
+    });
+
+    // get all types
+    this.productService.getTypes().subscribe({
+      next: response => { this.types = response; console.log(this.types); },
+      error: error => console.log(error)
+    });
 
 
 
-    }
+  }
 
-    filterProducts(itemId: number) {
-      this.productService.getProductByType(itemId).subscribe({
-        next: response => {this.products = response; console.log(response); this.optionSelected = this.types.filter(function(itm) {
+  filterProducts(itemId: number, index: number) {
+
+    this.productService.getProductByType(itemId).subscribe({
+      next: response => {
+        this.products = response; console.log(response);
+
+        this.optionSelected = this.types.filter(function (itm) {
           return itemId == itm.id
-        })[0].name; console.log(this.optionSelected)}
-      });
+        })[0].name; console.log(this.optionSelected)
+      }
+    });
 
-    }
+    this.selected = [false, false, false];
+    this.selected[index] = true;
+
+
+  }
 
 
 
