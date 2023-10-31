@@ -7,14 +7,19 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderComponent } from './header/header.component';
 
-import {MatSidenavModule} from '@angular/material/sidenav';
+import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { OptionsComponent } from './options/options.component';
+import { CartComponent } from './cart/cart.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatRippleModule } from '@angular/material/core';
+
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    OptionsComponent
+    OptionsComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,
@@ -22,7 +27,9 @@ import { OptionsComponent } from './options/options.component';
     BrowserAnimationsModule,
     MatSidenavModule,
     MatIconModule,
-    HttpClientModule
+    HttpClientModule,
+    MatToolbarModule,
+    MatRippleModule
   ],
   providers: [],
   bootstrap: [AppComponent]

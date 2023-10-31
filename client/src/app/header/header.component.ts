@@ -7,9 +7,4 @@ import { Component } from '@angular/core';
 })
 export class HeaderComponent {
 
-  public isMenuOpen: boolean = false;
-
-  public onSidenavClick(): void {
-    this.isMenuOpen = false;
-}
 }

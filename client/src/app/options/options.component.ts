@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../services/product.service';
 import { Product } from '../models/product';
 import { itemTypes } from '../models/itemType';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-options',
@@ -15,7 +16,7 @@ export class OptionsComponent implements OnInit {
   optionSelected: string = "Todos";
   selected: boolean[] = [false, false, false];
 
-  constructor(private productService: ProductService) {
+  constructor(private productService: ProductService, private route: Router ) {
 
   }
 
@@ -53,6 +54,10 @@ export class OptionsComponent implements OnInit {
     this.selected[index] = true;
 
 
+  }
+
+  goToCart() {
+    this.route.navigate(['/carrinho']);
   }
 
 
