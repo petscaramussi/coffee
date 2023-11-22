@@ -4,7 +4,7 @@ import {
   MAT_DIALOG_DATA,
   MatDialogRef,
 } from '@angular/material/dialog';
-import { DialogData } from '../options/options.component';
+import { Pedido } from '../models/pedido';
 
 @Component({
   selector: 'app-modal-add-cart',
@@ -14,7 +14,7 @@ import { DialogData } from '../options/options.component';
 export class ModalAddCartComponent {
   constructor(
     public dialogRef: MatDialogRef<ModalAddCartComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData,
+    @Inject(MAT_DIALOG_DATA) public data: Pedido,
   ) {}
 
   onNoClick(): void {

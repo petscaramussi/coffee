@@ -5,12 +5,8 @@ import { itemTypes } from '../models/itemType';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalAddCartComponent } from '../modal-add-cart/modal-add-cart.component';
+import { Pedido } from '../models/pedido';
 
-export interface DialogData {
-  id: number;
-  name: string;
-  qtde: number;
-}
 
 @Component({
   selector: 'app-options',
@@ -28,9 +24,9 @@ export class OptionsComponent implements OnInit {
 
   pedido: any[] = [];
 
-  
 
-  constructor(private productService: ProductService, private route: Router, public dialog: MatDialog ) {
+
+  constructor(private productService: ProductService, private route: Router, public dialog: MatDialog) {
 
   }
 
@@ -70,32 +66,50 @@ export class OptionsComponent implements OnInit {
 
   }
 
+
   goToCart() {
     this.route.navigate(['/carrinho']);
   }
 
+
   openDialog(index: number): void {
     const dialogRef = this.dialog.open(ModalAddCartComponent, {
-      data: {id: this.products[index].id, name: this.products[index].name, qtde: 1},
+      data: { id: this.products[index].id, name: this.products[index].name, qtde: 1, price: this.products[index].price},
     });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
-      if (result != undefined){
+      if (result != undefined) {
         this.addCart(result);
         console.log(result);
       }
     });
   }
 
- addCart(list: Object) {
-  
-    let menuItems: any = localStorage.getItem("ProductsInCart") || '[]';
-    menuItems = JSON.parse(menuItems); 
 
-    menuItems.push(list);
+  addCart(list: Pedido) {
+
+    let controler: boolean = false;
+    let menuItems: any = localStorage.getItem("ProductsInCart") || '[]';
+    menuItems = JSON.parse(menuItems);
+
+
+    menuItems.forEach((obj: any) => {
+      if (obj.name === list.name) {
+        // Increase the value in the same object
+        obj.qtde += list.qtde;
+        controler = true;
+      }
+    });
+
+    if (!controler) {
+      menuItems.push(list);
+    }
+
     localStorage.setItem("ProductsInCart", JSON.stringify(menuItems));
-   }
+
+
+  }
 
 
 

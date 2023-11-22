@@ -48,4 +48,45 @@ export class CartComponent implements OnInit {
     }
 
   }
+
+  onPlusItem(id: number) {
+    let menuItems: any = localStorage.getItem("ProductsInCart") || '[]';
+    menuItems = JSON.parse(menuItems);
+
+    menuItems.forEach((obj: any) => {
+      if (obj.id === id) {
+        // Increase the value in the same object
+        obj.qtde++;
+      }
+    });
+
+    localStorage.setItem("ProductsInCart", JSON.stringify(menuItems));
+    this.getValuesFromLocalStorage();
+  }
+
+  onSubItem(id: number) {
+    let menuItems: any = localStorage.getItem("ProductsInCart") || '[]';
+    menuItems = JSON.parse(menuItems);
+
+    menuItems.forEach((obj: any) => {
+      if (obj.id === id && obj.qtde > 1) {
+        // Increase the value in the same object
+        obj.qtde--;
+      }
+    });
+
+    localStorage.setItem("ProductsInCart", JSON.stringify(menuItems));
+    this.getValuesFromLocalStorage();
+  }
+
+  getTotal(): number {
+    let menuItems: any = localStorage.getItem("ProductsInCart") || '[]';
+    menuItems = JSON.parse(menuItems);
+
+    let totalPrice = menuItems.reduce((total: any, currentItem: any) => {
+      return total + (currentItem.price * currentItem.qtde);
+    }, 0);
+
+    return totalPrice;
+  }
 }
