@@ -18,8 +18,8 @@
         <div class="content">
             <span class="select-text">{{optionSelected}}</span>
             <div class="grid-container">
-                <div class="card-list" *ngFor="let product of products">
-                    <div class="content-list">
+                <div class="card-list" *ngFor="let product of products; let i = index">
+                    <div class="content-list" (click)="openDialog(i)">
                         <div class="food-card-name" style="color: #fff">{{product.name}}</div>
                         <div class="food-card-name" style="font-size: 1.0rem; opacity: 0.5; font-weight: 300;">
                             {{product.description}}</div>
@@ -44,6 +44,8 @@
             </svg>
         CARRINHO</button>
     </mat-toolbar>
+
+    
     
 
 

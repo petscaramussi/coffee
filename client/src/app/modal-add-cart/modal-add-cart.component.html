@@ -1,0 +1,35 @@
+<div class="content">
+<h1 mat-dialog-title class="title">Adicionar ao carrinho?</h1>
+<div mat-dialog-content>
+    <div class="counter">
+        <span class="product">{{data.name}}</span>
+        <div class="plus-icons">
+            <button type="button" tabindex="0" class="btn-icon" (click)="onSubQtde()">
+                <span class="">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24">
+                        <path fill="#000" fill-rule="evenodd"
+                            d="M17.993 11c.556 0 1.007.444 1.007 1 0 .552-.45 1-1.007 1H6.007A1.001 1.001 0 0 1 5 12c0-.552.45-1 1.007-1h11.986z">
+                        </path>
+                    </svg>
+                </span>
+            </button>
+            <div class="value">{{data.qtde}}</div>
+            <button type="button" tabindex="0" class="btn-icon" (click)="onPlusQtde()">
+                <span class="icon-marmita icon-marmita--plus-sign">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24">
+                        <path fill="#000" fill-rule="evenodd"
+                            d="M13 11h4.993c.556 0 1.007.444 1.007 1 0 .552-.45 1-1.007 1H13v4.993C13 18.55 12.556 19 12 19c-.552 0-1-.45-1-1.007V13H6.007A1.001 1.001 0 0 1 5 12c0-.552.45-1 1.007-1H11V6.007C11 5.45 11.444 5 12 5c.552 0 1 .45 1 1.007V11z">
+                        </path>
+                    </svg>
+                </span>
+            </button>
+        </div>
+    </div>
+
+</div>
+<div mat-dialog-actions align="end">
+    <button mat-button (click)="onNoClick()">No Thanks</button>
+    <button mat-button [mat-dialog-close]="data">Ok</button>
+</div>
+
+</div>

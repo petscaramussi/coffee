@@ -1,0 +1,40 @@
+.content {
+    background-color: #36353D;
+    border: black;
+}
+
+.title {
+    color: white;
+}
+
+.counter {
+    display: flex;
+    gap: 20px;
+}
+
+.product {
+    color: white;
+}
+
+.value {
+    color: white;
+}
+
+.plus-icons{
+    display: flex;
+    gap: 10px
+}
+
+.btn-icon {
+    margin-left: 0;
+    border: none;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20%;
+    outline: none;
+    transition: 0.1s;
+    position: relative;
+    overflow: hidden;
+    cursor: default;
+}

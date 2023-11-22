@@ -13,13 +13,18 @@ import { OptionsComponent } from './options/options.component';
 import { CartComponent } from './cart/cart.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatRippleModule } from '@angular/material/core';
+import { ModalAddCartComponent } from './modal-add-cart/modal-add-cart.component';
+import {MatDialogModule, } from '@angular/material/dialog';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatButtonModule} from '@angular/material/button';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     OptionsComponent,
-    CartComponent
+    CartComponent,
+    ModalAddCartComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +34,10 @@ import { MatRippleModule } from '@angular/material/core';
     MatIconModule,
     HttpClientModule,
     MatToolbarModule,
-    MatRippleModule
+    MatRippleModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
