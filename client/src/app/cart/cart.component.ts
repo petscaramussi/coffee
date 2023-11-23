@@ -7,84 +7,74 @@ import { Pedido } from '../models/pedido';
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent implements OnInit {
-
   canShow: boolean = false;
   pedidos: Pedido[] = [];
+
+  constructor() {}
 
   ngOnInit(): void {
     this.getValuesFromLocalStorage();
   }
 
-
-  getValuesFromLocalStorage() {
-    // Check if localStorage is supported
-    if (typeof localStorage !== 'undefined') {
-      // Retrieve data from localStorage
-      const storedData = localStorage.getItem('ProductsInCart'); // Replace 'yourKey' with the key you've used to store data
-
-      if (storedData) {
-        try {
-          // Parse the retrieved data (assuming it's JSON)
-          const parsedData = JSON.parse(storedData);
-
-          // Check if the parsed data is an array
-          if (Array.isArray(parsedData)) {
-            // Store the values in an array
-            this.pedidos = parsedData; // Replace 'any' with the specific type of your data if known
-
-            // Now you have your data in the 'dataArray' variable
-            console.log(this.pedidos);
-          } else {
-            console.error('Retrieved data is not an array.');
-          }
-        } catch (error) {
-          console.error('Error parsing data:', error);
+  private getLocalStorageData(key: string): Pedido[] | null {
+    const storedData = localStorage.getItem(key);
+    if (storedData) {
+      try {
+        const parsedData = JSON.parse(storedData);
+        if (Array.isArray(parsedData)) {
+          return parsedData;
+        } else {
+          console.error('Retrieved data is not an array.');
         }
-      } else {
-        console.error('No data found in localStorage for the provided key.');
+      } catch (error) {
+        console.error('Error parsing data:', error);
+      }
+    } else {
+      console.error(`No data found in localStorage for the key: ${key}.`);
+    }
+    return null;
+  }
+
+  private updateLocalStorageData(key: string, data: Pedido[]): void {
+    localStorage.setItem(key, JSON.stringify(data));
+    this.getValuesFromLocalStorage();
+  }
+
+  getValuesFromLocalStorage(): void {
+    if (typeof localStorage !== 'undefined') {
+      const key = 'ProductsInCart';
+      const parsedData = this.getLocalStorageData(key);
+      if (parsedData) {
+        this.pedidos = parsedData;
       }
     } else {
       console.error('localStorage is not supported in this browser.');
     }
-
   }
 
-  onPlusItem(id: number) {
-    let menuItems: any = localStorage.getItem("ProductsInCart") || '[]';
-    menuItems = JSON.parse(menuItems);
+  updateItemQuantity(id: number, increment: boolean): void {
+    const key = 'ProductsInCart';
+    let menuItems: Pedido[] = this.getLocalStorageData(key) || [];
 
-    menuItems.forEach((obj: any) => {
-      if (obj.id === id) {
-        // Increase the value in the same object
-        obj.qtde++;
+    const foundItem = menuItems.find(item => item.id === id);
+    if (foundItem) {
+      if (increment) {
+        foundItem.qtde++;
+      } else {
+        if (foundItem.qtde > 1) {
+          foundItem.qtde--;
+        }
       }
-    });
-
-    localStorage.setItem("ProductsInCart", JSON.stringify(menuItems));
-    this.getValuesFromLocalStorage();
-  }
-
-  onSubItem(id: number) {
-    let menuItems: any = localStorage.getItem("ProductsInCart") || '[]';
-    menuItems = JSON.parse(menuItems);
-
-    menuItems.forEach((obj: any) => {
-      if (obj.id === id && obj.qtde > 1) {
-        // Increase the value in the same object
-        obj.qtde--;
-      }
-    });
-
-    localStorage.setItem("ProductsInCart", JSON.stringify(menuItems));
-    this.getValuesFromLocalStorage();
+      this.updateLocalStorageData(key, menuItems);
+    }
   }
 
   getTotal(): number {
-    let menuItems: any = localStorage.getItem("ProductsInCart") || '[]';
-    menuItems = JSON.parse(menuItems);
+    const key = 'ProductsInCart';
+    const menuItems: Pedido[] = this.getLocalStorageData(key) || [];
 
-    let totalPrice = menuItems.reduce((total: any, currentItem: any) => {
-      return total + (currentItem.price * currentItem.qtde);
+    const totalPrice = menuItems.reduce((total, currentItem) => {
+      return total + currentItem.price * currentItem.qtde;
     }, 0);
 
     return totalPrice;

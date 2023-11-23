@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, Type } from '@angular/core';
 import { Product } from '../models/product';
-import { itemTypes } from '../models/itemType';
+import { ItemType } from '../models/itemType';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +20,6 @@ export class ProductService {
   }
 
   getTypes() {
-    return this.http.get<itemTypes[]>(this.baseUrl + 'products/types');
+    return this.http.get<ItemType[]>(this.baseUrl + 'products/types');
   }
 }

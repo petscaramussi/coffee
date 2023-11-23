@@ -1,4 +1,4 @@
-export interface itemTypes {
+export interface ItemType {
     id: number;
     name: string;
     imgUrl: string;
