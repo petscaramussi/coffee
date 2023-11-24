@@ -1,5 +1,5 @@
 .content {
-    background-color: #36353D;
+    background-color: #302c2b;
     border: black;
 }
 
@@ -38,3 +38,13 @@
     overflow: hidden;
     cursor: default;
 }
+
+.btn-ok {
+    background-color: white;
+    color: #000; /* Change this color to your desired background color */
+}
+
+.btn-voltar {
+    background-color: #3e3534;
+}
+

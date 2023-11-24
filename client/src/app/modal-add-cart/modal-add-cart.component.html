@@ -4,7 +4,7 @@
     <div class="counter">
         <span class="product">{{data.name}}</span>
         <div class="plus-icons">
-            <button type="button" tabindex="0" class="btn-icon" (click)="onSubQtde()">
+            <button type="button" tabindex="0" class="btn-icon" (click)="onSubQtde()" matRipple>
                 <span class="">
                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24">
                         <path fill="#000" fill-rule="evenodd"
@@ -14,7 +14,7 @@
                 </span>
             </button>
             <div class="value">{{data.qtde}}</div>
-            <button type="button" tabindex="0" class="btn-icon" (click)="onPlusQtde()">
+            <button type="button" tabindex="0" class="btn-icon" (click)="onPlusQtde()" matRipple>
                 <span class="icon-marmita icon-marmita--plus-sign">
                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24">
                         <path fill="#000" fill-rule="evenodd"
@@ -28,8 +28,8 @@
 
 </div>
 <div mat-dialog-actions align="end">
-    <button mat-button (click)="onNoClick()">No Thanks</button>
-    <button mat-button [mat-dialog-close]="data">Ok</button>
+    <button mat-button (click)="onNoClick()" class="btn-voltar" style="color: white; font-weight: 200;">Voltar</button>
+    <button mat-button [mat-dialog-close]="data" class="btn-ok">Ok</button>
 </div>
 
 </div>

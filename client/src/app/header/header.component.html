@@ -1,6 +1,7 @@
 <header class="site-header">
     <div class="site-identity">
-        <h1>Coffe Shop</h1>
+        <h1 *ngIf="currentRoute == '/produtos'">Coffe Shop</h1>
+        <div class="nav-text"><mat-icon class="back" [routerLink]="'/'">arrow_back</mat-icon> <h1 class="carrinho-title" *ngIf="currentRoute == '/carrinho'">Carrinho</h1></div>
     </div>
     <div class="menu-icon">
         <div>

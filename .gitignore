@@ -480,3 +480,8 @@ $RECYCLE.BIN/
 .vs/coffee/v17/.suo
 *.vsidx
 *.v2
+
+*.v2
+.vs/coffee/v17/.suo
+*.bin
+*.bin
