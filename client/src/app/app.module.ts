@@ -17,6 +17,9 @@ import { ModalAddCartComponent } from './modal-add-cart/modal-add-cart.component
 import {MatDialogModule, } from '@angular/material/dialog';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatButtonModule} from '@angular/material/button';
+import { LoginOrContinueComponent } from './login-or-continue/login-or-continue.component';
+import { SemLoginComponent } from './sem-login/sem-login.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +27,10 @@ import {MatButtonModule} from '@angular/material/button';
     HeaderComponent,
     OptionsComponent,
     CartComponent,
-    ModalAddCartComponent
+    ModalAddCartComponent,
+    LoginOrContinueComponent,
+    SemLoginComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
