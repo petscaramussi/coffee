@@ -1,0 +1,29 @@
+.form__label {
+    font-size: 1rem;
+    color: white;
+}
+
+.form__input {
+    color: #333;
+    font-size: 1.2rem;
+    margin: 0 auto;
+    padding: 0.5rem 1.2rem;
+    border-radius: 0.2rem;
+    background-color: rgb(255, 255, 255);
+    border: none;
+    display: block;
+    border-bottom: 0.3rem solid transparent;
+    transition: all 0.3s;
+}
+
+.is-valid {
+    border: 1.5px solid green;
+}
+
+.is-invalid {
+    border: 1.5px solid red;
+}
+
+.invalid-text {
+    color:#ff4d6d;
+}

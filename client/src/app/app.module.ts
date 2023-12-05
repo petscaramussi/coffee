@@ -20,6 +20,10 @@ import {MatButtonModule} from '@angular/material/button';
 import { LoginOrContinueComponent } from './login-or-continue/login-or-continue.component';
 import { SemLoginComponent } from './sem-login/sem-login.component';
 import { LoginComponent } from './login/login.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgxMaskModule } from 'ngx-mask';
+import { TextInputComponent } from './components/text-input/text-input.component';
+
 
 @NgModule({
   declarations: [
@@ -30,7 +34,8 @@ import { LoginComponent } from './login/login.component';
     ModalAddCartComponent,
     LoginOrContinueComponent,
     SemLoginComponent,
-    LoginComponent
+    LoginComponent,
+    TextInputComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +48,10 @@ import { LoginComponent } from './login/login.component';
     MatRippleModule,
     MatDialogModule,
     MatFormFieldModule,
-    MatButtonModule
+    MatButtonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgxMaskModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]

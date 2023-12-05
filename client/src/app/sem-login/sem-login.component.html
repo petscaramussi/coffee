@@ -1,1 +1,13 @@
-<p>sem-login works!</p>
+<form [formGroup]="loginForm" class="form-group" (ngSubmit)="onSubmit()">
+
+    <app-text-input [formControl]="loginForm.controls['name']" [label]="'Nome'" [placeholder]="'Seu Nome'" [id]="'name'"></app-text-input>
+    <br>
+    <app-text-input [formControl]="loginForm.controls['tel']" [label]="'Telefone'" [placeholder]="'(00) 00000-0000'" [mask]="'(00) 00000-0000'" [id]="'tel'"></app-text-input>
+    <br>
+    <app-text-input [formControl]="loginForm.controls['address']" [label]="'Endereço'" [placeholder]="'Rua Exemplo'" [id]="'address'"></app-text-input>
+    <br>
+    <app-text-input [formControl]="loginForm.controls['complement']" [label]="'Complemento'" [placeholder]="'Ap. 00, Casa...'" [id]="'complement'"></app-text-input>
+    <br>
+    <app-text-input [formControl]="loginForm.controls['payment']" [label]="'Pagamento'" [placeholder]="'Cartão Debito'" [id]="'payment'"></app-text-input>
+    <button mat-button [disabled]="loginForm.invalid" class="button-entrar">Finalizar</button>
+</form>

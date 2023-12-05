@@ -1,0 +1,10 @@
+<div>
+    <label for={{id}} class="form__label">{{label}}</label>
+    <input type={{type}} [formControl]="control" placeholder="{{placeholder}}" class="form__input" id={{id}}
+        [ngClass]="(control.touched) ? control.invalid ? 'is-invalid' : 'is-valid' : null"
+        mask={{mask}}
+        />
+
+    <li *ngIf="control.touched && control.errors?.['required']" class="invalid-text">Entre com um(a) {{label}}</li>
+    <li *ngIf="control.touched && control.errors" class="invalid-text">Entre com um(a) {{label}} valido</li>
+</div>
