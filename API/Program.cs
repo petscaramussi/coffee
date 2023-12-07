@@ -1,6 +1,8 @@
+using API.Profiles;
 using Core.Interfaces;
 using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,7 +17,9 @@ builder.Services.AddCors(opt =>
 });
 // Add services to the container.
 
-builder.Services.AddControllers();
+builder.Services.Configure<Microsoft.AspNetCore.Http.Json.JsonOptions>(options => options.SerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
+builder.Services.AddControllers().AddJsonOptions(x =>
+   x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve);
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -23,7 +27,7 @@ builder.Services.AddDbContext<StoreContext>(opt =>
 {
    opt.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")); 
 });
-
+//builder.Services.AddAutoMapper(typeof(OrderProfile));
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 
 var app = builder.Build();

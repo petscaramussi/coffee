@@ -1,3 +1,5 @@
+using API.Profiles;
+using AutoMapper;
 using Core.Entities;
 using Core.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -8,7 +10,6 @@ namespace API.Controllers
     [Route("api/[controller]")]
     public class ProductsController : ControllerBase
     {
-
         private readonly IProductRepository _repo;
 
         public ProductsController(IProductRepository repo)
@@ -34,6 +35,13 @@ namespace API.Controllers
         public async Task<ActionResult<List<ProductType>>> GetTypes()
         {
             return Ok(await _repo.GetTypesAsync());
+        }
+
+        [HttpPost("order")]
+        public async Task<IActionResult> CreatePedido( Order order)
+        {
+            var resultado = await _repo.CreateOrder(order);
+            return Ok(resultado);
         }
     }
 }
