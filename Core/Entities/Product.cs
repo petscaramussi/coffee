@@ -10,7 +10,6 @@ namespace Core.Entities
         public int ProductTypeId { get; set; }
 
         public virtual ICollection<Item> Items { get; set; }
-        //public virtual ICollection<OrderItem> OrderItems { get; set; }
         public virtual ProductType ProductType { get; set; }
     }
 }
