@@ -9,7 +9,10 @@ namespace API.Profiles
         public string Address { get; set; }
         public string AddressComplement { get; set; }
         public string Payment { get; set; }
+        public decimal? FinalPrice { get; set; } = 0.0m;
 
-        public ItemsDTO Items { get; set; }
+        public ICollection<ItemsDTO> Items { get; set; }
+
+        public OrderDTO() { }
     }
 }

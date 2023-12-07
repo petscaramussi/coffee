@@ -1,8 +1,10 @@
 using API.Profiles;
+using AutoMapper;
 using Core.Interfaces;
 using Infrastructure.Data;
 using Microsoft.AspNetCore.Http.Json;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
@@ -28,6 +30,29 @@ builder.Services.AddDbContext<StoreContext>(opt =>
     opt.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
+
+MapperConfiguration mapperConfiguration = new MapperConfiguration(cfg =>
+{
+    Action<IMapperConfigurationExpression> config = _ => { };
+
+    config(cfg);
+
+    IEnumerable<Assembly> assembliesToScan = AppDomain.CurrentDomain.GetAssemblies();
+
+    TypeInfo[] allTypes = assembliesToScan.Where(a => a.GetName().Name != nameof(AutoMapper))
+                                          .SelectMany(a => a.DefinedTypes)
+                                          .ToArray();
+
+    TypeInfo profileTypeInfo = typeof(Profile).GetTypeInfo();
+    TypeInfo[] profiles = allTypes.Where(t => profileTypeInfo.IsAssignableFrom(t) && !t.IsAbstract).ToArray();
+
+    foreach (Type profile in profiles.Select(t => t.AsType()))
+    {
+        cfg.AddProfile(profile);
+    }
+});
+IMapper mapper = mapperConfiguration.CreateMapper();
+builder.Services.AddSingleton(mapper);
 
 var app = builder.Build();
 

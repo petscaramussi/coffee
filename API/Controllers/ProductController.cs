@@ -11,10 +11,12 @@ namespace API.Controllers
     public class ProductsController : ControllerBase
     {
         private readonly IProductRepository _repo;
+        private readonly IMapper _mapper;
 
-        public ProductsController(IProductRepository repo)
+        public ProductsController(IProductRepository repo, IMapper mapper)
         {
             _repo = repo;
+            _mapper = mapper;
         }
 
         [HttpGet]
@@ -41,7 +43,15 @@ namespace API.Controllers
         public async Task<IActionResult> CreatePedido( Order order)
         {
             var resultado = await _repo.CreateOrder(order);
-            return Ok(resultado);
+            var dto = _mapper.Map<List<OrderDTO>>(resultado);
+            foreach(var info in dto)
+            {
+                foreach (var item in info.Items)
+                {
+                    info.FinalPrice = (info.FinalPrice + item.Product.Price) * item.Qtde;
+                }
+            }
+            return Ok(dto);
         }
     }
 }

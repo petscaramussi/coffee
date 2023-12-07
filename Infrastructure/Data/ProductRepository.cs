@@ -18,7 +18,7 @@ namespace Infrastructure.Data
             _context.Orders.Add(order);
             await _context.SaveChangesAsync();
 
-            return await _context.Orders.Include(i => i.Items).ToListAsync();
+            return await _context.Orders.Include(i => i.Items).ThenInclude(i => i.Product).ThenInclude(i => i.ProductType).ToListAsync();
         }
 
         public async Task<Product> GetProductByIdAsync(int id)

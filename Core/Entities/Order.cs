@@ -1,4 +1,5 @@
-﻿using System.Text.Json;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json;
 using System.Text.Json.Nodes;
 
 namespace Core.Entities
@@ -12,6 +13,8 @@ namespace Core.Entities
         public string AddressComplement { get; set; }
         public string Payment {  get; set; }
 
+        [NotMapped]
+        public decimal? SuaMaeEPuta { get; set; } = 0.0m;
         public virtual ICollection<Item> Items { get; set; }
     }
 }
