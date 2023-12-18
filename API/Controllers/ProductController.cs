@@ -53,5 +53,18 @@ namespace API.Controllers
             }
             return Ok(dto);
         }
+
+        [HttpGet("order")]
+        public async Task<IActionResult> GetPedidos()
+        {
+            return null;
+        }
+
+        public async Task<IActionResult> GetPedidoById(int id)
+        {
+            return null;
+        }
+
+
     }
 }
