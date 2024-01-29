@@ -13,12 +13,12 @@ namespace Infrastructure.Data
             _context = context;
         }
 
-        public async Task<List<Order>> CreateOrder(Order order)
+        public async Task<string> CreateOrder(Order order)
         {
             _context.Orders.Add(order);
             await _context.SaveChangesAsync();
 
-            return await _context.Orders.Include(i => i.Items).ThenInclude(i => i.Product).ThenInclude(i => i.ProductType).ToListAsync();
+            return "ok";
         }
 
         public async Task<Product> GetProductByIdAsync(int id)
@@ -44,5 +44,12 @@ namespace Infrastructure.Data
         {
             return await _context.ProductTypes.ToListAsync();
         }
+
+        public async Task<List<Order>> GetPedidosAsync()
+        {
+            return await _context.Orders.Include(i => i.Items).ThenInclude(i => i.Product).ThenInclude(i => i.ProductType).ToListAsync();
+        }
+
+
     }
 }

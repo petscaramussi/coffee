@@ -14,7 +14,6 @@ namespace Core.Entities
         public string Payment {  get; set; }
 
         [NotMapped]
-        public decimal? SuaMaeEPuta { get; set; } = 0.0m;
         public virtual ICollection<Item> Items { get; set; }
     }
 }

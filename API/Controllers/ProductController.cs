@@ -43,8 +43,16 @@ namespace API.Controllers
         public async Task<IActionResult> CreatePedido( Order order)
         {
             var resultado = await _repo.CreateOrder(order);
-            var dto = _mapper.Map<List<OrderDTO>>(resultado);
-            foreach(var info in dto)
+            return Ok(resultado);
+        }
+
+        [HttpGet("order")]
+        public async Task<IActionResult> GetPedidos()
+        {
+            var result = await _repo.GetPedidosAsync();
+            var dto = _mapper.Map<List<OrderDTO>>(result);
+
+            foreach (var info in dto)
             {
                 foreach (var item in info.Items)
                 {
@@ -52,17 +60,7 @@ namespace API.Controllers
                 }
             }
             return Ok(dto);
-        }
 
-        [HttpGet("order")]
-        public async Task<IActionResult> GetPedidos()
-        {
-            return null;
-        }
-
-        public async Task<IActionResult> GetPedidoById(int id)
-        {
-            return null;
         }
 
 
