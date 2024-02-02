@@ -25,4 +25,22 @@ Angular
 
 ## Telas
 
-<img src="https://github.com/petscaramussi/images/blob/main/coffee/1.PNG" width="48%"> <img src="https://github.com/petscaramussi/images/blob/main/coffee/2.PNG" width="48%">
+<img src="https://github.com/petscaramussi/images/blob/main/coffee/1.png" width="48%"> <img src="https://github.com/petscaramussi/images/blob/main/coffee/2.png" width="48%">
+
+<br>
+
+<img src="https://github.com/petscaramussi/images/blob/main/coffee/3.png" width="48%"> <img src="https://github.com/petscaramussi/images/blob/main/coffee/4.png" width="48%">
+
+<br>
+
+<img src="https://github.com/petscaramussi/images/blob/main/coffee/5.png" width="48%">
+
+<br>
+
+## Recursos a serem implementados
+
+- Sistema de login
+- Painel de Admin
+- Tela de aguardo de pedido
+- Tela de confirmação final
+- Rota de pedido para usuário logado 
