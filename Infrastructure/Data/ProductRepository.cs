@@ -13,12 +13,12 @@ namespace Infrastructure.Data
             _context = context;
         }
 
-        public async Task<string> CreateOrder(Order order)
+        public async Task<List<Order>> CreateOrder(Order order)
         {
             _context.Orders.Add(order);
             await _context.SaveChangesAsync();
 
-            return "ok";
+            return await _context.Orders.Where(w => w.Id == order.Id).ToListAsync();
         }
 
         public async Task<Product> GetProductByIdAsync(int id)

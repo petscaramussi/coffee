@@ -7,7 +7,7 @@ namespace Core.Interfaces
         Task<Product> GetProductByIdAsync(int id);
         Task<IReadOnlyList<Product>> GetProductsAsync(int? id);
         Task<IReadOnlyList<ProductType>> GetTypesAsync();
-        Task<string> CreateOrder(Order order);
+        Task<List<Order>> CreateOrder(Order order);
         Task<List<Order>> GetPedidosAsync();
     }
 }
