@@ -11,11 +11,9 @@ import { Pedido } from '../models/pedido';
 })
 export class SemLoginComponent implements OnInit {
 
-  pedidos: Pedido[] = [];
+  pedidos: any[] = [];
   pedidosDestruct: any[] = [];
 
-  // Keys to keep
-  keysToKeep = ['idProduct', 'qtde'];
 
   // init object
   pedido: CartItem = {
@@ -33,10 +31,31 @@ export class SemLoginComponent implements OnInit {
   ngOnInit(): void {
     this.getValuesFromLocalStorage();
     console.log(this.pedidos);
+    this.changekeyFromCartObject();
     this.reduceArrayOfObeject();
   }
 
   constructor(private pedidoService: PedidoService) { }
+
+
+  changekeyFromCartObject() {
+
+    const changeKeyName = <T>(arr: T[], oldKey: keyof T, newKey: keyof T): T[] => {
+      return arr.map(obj => {
+        if ((obj as object).hasOwnProperty(oldKey)) {
+          const { [oldKey]: oldKeyValue, ...rest } = obj;
+          return { ...rest, [newKey]: oldKeyValue } as T;
+        }
+        return obj;
+      });
+    };
+    
+    // Change the key name from 'key1' to 'newKey1'
+    this.pedidos = changeKeyName(this.pedidos, 'id', 'productId');
+
+    console.log(this.pedidos);
+  
+  }
 
 
   reduceArrayOfObeject() {
@@ -51,10 +70,10 @@ export class SemLoginComponent implements OnInit {
         });
         return reducedObj;
       });
-    }; 
+    };
 
     // Reduce the array
-    this.pedidosDestruct = reduceArray(this.pedidos, ['id', 'qtde']);
+    this.pedidosDestruct = reduceArray(this.pedidos, ['productId', 'qtde']);
 
     console.log(this.pedidosDestruct);
   }
@@ -105,7 +124,7 @@ export class SemLoginComponent implements OnInit {
       tel: this.loginForm.value.tel,
       addressComplement: this.loginForm.value.complement,
       payment: this.loginForm.value.payment,
-      Items: 
+      Items:
         this.pedidosDestruct
     }
 
