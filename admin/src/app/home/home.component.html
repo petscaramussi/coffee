@@ -1,0 +1,27 @@
+<h3 class="title">Pedidos - 08/02/2024 | última atualização 12:33</h3>
+
+<table class="table table-striped table-pedidos">
+	<thead class="table-dark">
+		<tr>
+			<th scope="col">Nome</th>
+			<th scope="col">Telefone</th>
+			<th scope="col">Endereço</th>
+			<th scope="col">Complemento</th>
+			<th scope="col">Pagamento</th>
+            <th scope="col">Preço Final</th>
+			<th scope="col">Pedido</th>
+		</tr>
+	</thead>
+	<tbody>
+			<tr *ngFor="let pedidos of pedido">
+                <td>{{pedidos.name}}</td>
+                <td>{{pedidos.tel}}</td>
+				<td>{{pedidos.address}}</td>
+				<td>{{pedidos.addressComplement}}</td>
+				<td>{{pedidos.payment}}</td>
+                <td>{{pedidos.finalPrice | currency : 'BRL'}}</td>
+                <td><button (click)="open(pedidos.items)">ver</button></td>
+			</tr>
+
+	</tbody>
+</table>
