@@ -1,4 +1,4 @@
-import { Component, Input, OnInit,  inject } from '@angular/core';
+import { Component, Input, OnInit, inject } from '@angular/core';
 import { Items, Pedido } from '../models/pedido';
 import { PedidosService } from '../pedidos.service';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -12,7 +12,7 @@ import { CommonModule } from '@angular/common';
 	imports: [CommonModule],
 	template: `
 		<div class="modal-header">
-			<h4 class="modal-title">Hi there!</h4>
+			<h4 class="modal-title">Pedido</h4>
 			<button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
 		</div>
 		<div class="modal-body">
@@ -21,27 +21,27 @@ import { CommonModule } from '@angular/common';
 			</div>
 		</div>
 		<div class="modal-footer">
-			<button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
+			<button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Fechar</button>
 		</div>
 	`,
 })
 
 export class NgbdModalContent {
 	activeModal = inject(NgbActiveModal);
-  	@Input() pedido: any;
+	@Input() pedido: any;
 
 }
 
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+	selector: 'app-home',
+	templateUrl: './home.component.html',
+	styleUrls: ['./home.component.css']
 })
 
-export class HomeComponent implements OnInit{
+export class HomeComponent implements OnInit {
 
-  private modalService = inject(NgbModal);
+	private modalService = inject(NgbModal);
 
 	open(pedido: Items[]) {
 		const modalRef = this.modalService.open(NgbdModalContent);
@@ -49,22 +49,28 @@ export class HomeComponent implements OnInit{
 		modalRef.componentInstance.pedido = pedido;
 	}
 
-  pedido: Pedido[] = [];
+	pedido: Pedido[] = [];
+	public now: Date = new Date();
 
-  constructor(private pedidoService: PedidosService) {}
+	constructor(private pedidoService: PedidosService) { 
+		setInterval(() => {
+			this.now = new Date();
+			this.getAllOrders();
+		}, 90000);
+	}
 
-  ngOnInit(): void {
-    this.getAllOrders();
-  }
+	ngOnInit(): void {
+		this.getAllOrders();
+	}
 
-  getAllOrders() {
-    this.pedidoService.getOrders().subscribe({
-      next: (response) => {
-      this.pedido = response;
-      console.log(this.pedido);
-    }
-    })
-  }
+	getAllOrders() {
+		this.pedidoService.getOrders().subscribe({
+			next: (response) => {
+				this.pedido = response;
+				console.log(this.pedido);
+			}
+		})
+	}
 
-  
+
 }
