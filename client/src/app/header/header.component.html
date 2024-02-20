@@ -5,6 +5,7 @@
         <div class="nav-text" *ngIf="currentRoute == '/carrinho/login-or-continue'"><mat-icon class="back" [routerLink]="'/carrinho'">arrow_back</mat-icon> <h1 class="carrinho-title" style="margin: .4em 0 .3em 0.6em;">Login</h1></div>
         <div class="nav-text" *ngIf="currentRoute == '/carrinho/login'"><mat-icon class="back" [routerLink]="'/carrinho/login-or-continue'">arrow_back</mat-icon> <h1 class="carrinho-title" style="margin: .4em 0 .3em 0.6em;">Voltar</h1></div>
         <div class="nav-text" *ngIf="currentRoute == '/carrinho/sem-login'"><mat-icon class="back" [routerLink]="'/carrinho/login-or-continue'">arrow_back</mat-icon> <h1 class="carrinho-title" style="margin: .4em 0 .3em 0.6em;">Voltar</h1></div>
+        <h1 *ngIf="currentRoute == '/final'">Pedido feito, aguarde...</h1>
     </div>
     <div class="menu-icon">
         <div>

@@ -1,1 +1,46 @@
-<p>final works!</p>
+<br>
+<span class="title-status">Status</span>
+
+<div style="margin-left:10px">
+    <div class="wrapper">
+        <ul class="StepProgress">
+            <div class="StepProgress-item is-done"><span style="opacity: 0.6;">Recebido</span></div>
+            <div class="StepProgress-item is-done"><span style="opacity: 0.6;">Em Preparo</span></div>
+            <div class="StepProgress-item current">Pronto para entrega</div>
+            <div class="StepProgress-item current">Em rota de entrega</div>
+        </ul>
+    </div>
+</div>
+
+<div class="main-card">
+    <div class="header">
+        <div class="content">
+            <span class="title">Seu Pedido</span>
+        </div>
+    </div>
+    <hr>
+    <div>
+        <div class="food-card" *ngFor="let pedido of pedidos">
+            <div class="content">
+                <span class="title caption">{{pedido.qtde}} uni - {{pedido.name}}<span class="price">{{(pedido.qtde *
+                        pedido.price) | currency : 'R$ '}}</span></span>
+
+            </div>
+        </div>
+    </div>
+    <br><br>
+    <div class="footer" *ngIf="pedidos.length != 0">
+        <div class="food-card">
+            <div class="content">
+                <span class="title caption" style="font-size: 1.1rem;">Total<span class="price"
+                        style="color: #71d5ac; font-size: 1.1rem;">{{getTotal() | currency : 'R$ '}}</span></span>
+            </div>
+        </div>
+
+        <button mat-button class="button-cancelar" [routerLink]="['login-or-continue']"> <mat-icon>close</mat-icon>
+            Cancelar Pedido</button>
+        <button mat-button class="button-chat" [routerLink]="['login-or-continue']">
+            <mat-icon>chat_bubble_outline</mat-icon> Iniciar Chat</button>
+
+    </div>
+</div>
