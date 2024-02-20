@@ -23,6 +23,7 @@ import { LoginComponent } from './login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxMaskModule } from 'ngx-mask';
 import { TextInputComponent } from './components/text-input/text-input.component';
+import { FinalComponent } from './final/final.component';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { TextInputComponent } from './components/text-input/text-input.component
     LoginOrContinueComponent,
     SemLoginComponent,
     LoginComponent,
-    TextInputComponent
+    TextInputComponent,
+    FinalComponent
   ],
   imports: [
     BrowserModule,

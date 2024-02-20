@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CartItem } from '../models/cartItem';
 import { PedidoService } from '../services/pedido.service';
 import { Pedido } from '../models/pedido';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sem-login',
@@ -35,7 +36,7 @@ export class SemLoginComponent implements OnInit {
     this.reduceArrayOfObeject();
   }
 
-  constructor(private pedidoService: PedidoService) { }
+  constructor(private pedidoService: PedidoService, private router: Router) { }
 
 
   changekeyFromCartObject() {
@@ -131,5 +132,7 @@ export class SemLoginComponent implements OnInit {
     console.log(this.pedido);
 
     this.pedidoService.setOrder(this.pedido);
+
+    this.router.navigate(['/final']);
   }
 }
