@@ -56,7 +56,7 @@ namespace API.Controllers
             {
                 foreach (var item in info.Items)
                 {
-                    info.FinalPrice = (info.FinalPrice + item.Product.Price) * item.Qtde;
+                    info.FinalPrice = item.Qtde * item.Product.Price + info.FinalPrice;
                 }
             }
             return Ok(dto);
