@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS "Orders" (
 CREATE TABLE IF NOT EXISTS "ProductTypes" (
     "Id" SERIAL PRIMARY KEY,
     "Name" VARCHAR(100),
-    "imgUrl" TEXT
+    "ImgUrl" TEXT
 );
 
 CREATE TABLE IF NOT EXISTS "Products" (
@@ -39,3 +39,11 @@ CREATE TABLE IF NOT EXISTS "Items" (
 CREATE INDEX "IX_Items_OrderId" ON "Items" ("OrderId");
 CREATE INDEX "IX_Items_ProductId" ON "Items" ("ProductId");
 CREATE INDEX "IX_Products_ProductTypeId" ON "Products" ("ProductTypeId");
+
+INSERT INTO "ProductTypes" ("Name", "ImgUrl")
+VALUES ('Café', 'https://cdn-icons-png.flaticon.com/512/924/924514.png')
+RETURNING *;
+
+INSERT INTO "Products" ("Name", "Description", "Price", "PictureUrl", "ProductTypeId")
+VALUES ('Café preto', 'Café preto, forte e amargo', 10.0, '', 1)
+RETURNING *;
