@@ -1,18 +1,33 @@
 .form-group {
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    top: 40%;
-    left: 50%;
-    transform: translate(-50%, -40%);
-  }
-  
-  
-  .button-entrar {
-    margin: 0 auto;
-    width: 100%;
-    background-color: #71d5ac;
-    margin-top: 6%;
-    margin-bottom: 3%;
-    color: #fff;
-  }
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -40%);
+}
+
+
+.button-entrar {
+  margin: 0 auto;
+  width: 100%;
+  background-color: #71d5ac;
+  margin-top: 6%;
+  margin-bottom: 3%;
+  color: #fff;
+}
+
+
+.custom-mat-select {
+  background-color: rgb(255, 255, 255);
+  padding-top: 10px;
+  padding-bottom: 10px;
+  box-sizing: border-box;
+  padding-right: 15px;
+  border-radius: 0.2rem;
+}
+
+.form__label {
+  font-size: 1rem;
+  color: white;
+}

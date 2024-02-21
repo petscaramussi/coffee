@@ -8,6 +8,11 @@
     <br>
     <app-text-input [formControl]="loginForm.controls['complement']" [label]="'Complemento'" [placeholder]="'Ap. 00, Casa...'" [id]="'complement'"></app-text-input>
     <br>
-    <app-text-input [formControl]="loginForm.controls['payment']" [label]="'Pagamento'" [placeholder]="'Cartão Debito'" [id]="'payment'"></app-text-input>
+
+    <label class="form__label">Pagamento</label>
+    <mat-select placeholder="Selecione" class="custom-mat-select">
+        <mat-option *ngFor="let payment of payments" [value]="payment">{{payment.option}}</mat-option>
+    </mat-select>
+    <br>
     <button mat-button [disabled]="loginForm.invalid" class="button-entrar" >Finalizar</button>
 </form>
