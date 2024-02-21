@@ -23,7 +23,7 @@ Angular
  > (centifique-se de estar dentro do caminho 'coffee/API/api'
 
 
-## Telas
+## Telas App
 
 <img src="https://github.com/petscaramussi/images/blob/main/coffee/1.png" width="48%"> <img src="https://github.com/petscaramussi/images/blob/main/coffee/2.png" width="48%">
 
@@ -33,9 +33,13 @@ Angular
 
 <br>
 
-<img src="https://github.com/petscaramussi/images/blob/main/coffee/5.png" width="48%">
+<img src="https://github.com/petscaramussi/images/blob/main/coffee/5.png" width="48%"> <img src="https://github.com/petscaramussi/images/blob/main/coffee/7.png" width="48%">
 
 <br>
+
+## Tela Admin
+
+<img src="https://github.com/petscaramussi/images/blob/main/coffee/admin.png">
 
 ## Recursos a serem implementados
 
