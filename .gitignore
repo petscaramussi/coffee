@@ -486,3 +486,5 @@ $RECYCLE.BIN/
 *.bin
 *.bin
 .vs/
+admin/.angular/
+client/.angular/
