@@ -1,14 +1,16 @@
-using API.Profiles;
 using AutoMapper;
-using Core.Interfaces;
+using Core.Interfaces.Repositories;
+using Core.Services;
+using Core.Validators;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Infrastructure.Data;
-using Microsoft.AspNetCore.Http.Json;
+using Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
-using System.Text.Json;
 using System.Text.Json.Serialization;
 
-var builder = WebApplication.CreateBuilder(args);
+WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddCors(opt =>
 {
@@ -27,9 +29,17 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<StoreContext>(opt =>
 {
-    opt.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"));
+    opt.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
+builder.Services.AddScoped<IOrderService, OrderService>();
+builder.Services.AddScoped<IProductService, ProductService>();
+
+builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
+
+builder.Services.AddFluentValidationAutoValidation();
+builder.Services.AddValidatorsFromAssemblyContaining<ProductValidator>();
+builder.Services.AddValidatorsFromAssemblyContaining<OrderValidator>();
 
 MapperConfiguration mapperConfiguration = new MapperConfiguration(cfg =>
 {
@@ -54,7 +64,7 @@ MapperConfiguration mapperConfiguration = new MapperConfiguration(cfg =>
 IMapper mapper = mapperConfiguration.CreateMapper();
 builder.Services.AddSingleton(mapper);
 
-var app = builder.Build();
+WebApplication app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -70,19 +80,5 @@ app.UseCors("CorsPolicy");
 app.UseAuthorization();
 
 app.MapControllers();
-
-using var scope = app.Services.CreateScope();
-var services = scope.ServiceProvider;
-var context = services.GetRequiredService<StoreContext>();
-var logger = services.GetRequiredService<ILogger<Program>>();
-
-try
-{
-    await context.Database.MigrateAsync();
-}
-catch (Exception ex)
-{
-    logger.LogError(ex, "An error occurred during migration");
-}
 
 app.Run();

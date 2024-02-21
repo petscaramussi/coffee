@@ -1,6 +1,6 @@
-using System.Reflection;
 using Core.Entities;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection;
 
 namespace Infrastructure.Data
 {
@@ -11,7 +11,7 @@ namespace Infrastructure.Data
         }
 
         public DbSet<Product> Products { get; set; }
-        public DbSet<ProductType> ProductTypes {get; set; }
+        public DbSet<ProductType> ProductTypes { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<Item> Items { get; set; }
 

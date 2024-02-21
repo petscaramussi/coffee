@@ -1,8 +1,9 @@
-using API.Profiles;
+using API.ViewModels;
 using AutoMapper;
 using Core.Entities;
-using Core.Interfaces;
+using Core.Interfaces.Repositories;
 using Microsoft.AspNetCore.Mvc;
+using static Core.Exceptions.ThrowIf;
 
 namespace API.Controllers
 {
@@ -10,59 +11,38 @@ namespace API.Controllers
     [Route("api/[controller]")]
     public class ProductsController : ControllerBase
     {
-        private readonly IProductRepository _repo;
+        private readonly IProductService _service;
         private readonly IMapper _mapper;
 
-        public ProductsController(IProductRepository repo, IMapper mapper)
+        public ProductsController(IProductService service,
+                                  IMapper mapper)
         {
-            _repo = repo;
+            _service = service;
             _mapper = mapper;
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<Product>>> GetProducts(int? TypeId)
+        public async Task<IActionResult> GetProducts(int? typeId)
         {
-            var products = await _repo.GetProductsAsync(TypeId);
+            Throw<ArgumentException>.If(typeId is null || typeId.Value <= 0, "Invalid Type");
+            IReadOnlyList<Product> products = await _service.GetProductsAsync(typeId);
+            IEnumerable<ProductViewModel> viewModel = _mapper.Map<IEnumerable<ProductViewModel>>(products);
 
-            return Ok(products);
+            return Ok(viewModel);
         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<Product>> GetProduct(int id)
         {
-            return await _repo.GetProductByIdAsync(id);
+            Throw<ArgumentException>.If(id <= 0, "Invalid Type");
+            Product product = await _service.GetProductByIdAsync(id);
+            ProductViewModel viewModel = _mapper.Map<ProductViewModel>(product);
+
+            return Ok(viewModel);
         }
 
         [HttpGet("types")]
         public async Task<ActionResult<List<ProductType>>> GetTypes()
-        {
-            return Ok(await _repo.GetTypesAsync());
-        }
-
-        [HttpPost("order")]
-        public async Task<IActionResult> CreatePedido( Order order)
-        {
-            var resultado = await _repo.CreateOrder(order);
-            return Ok(resultado);
-        }
-
-        [HttpGet("order")]
-        public async Task<IActionResult> GetPedidos()
-        {
-            var result = await _repo.GetPedidosAsync();
-            var dto = _mapper.Map<List<OrderDTO>>(result);
-
-            foreach (var info in dto)
-            {
-                foreach (var item in info.Items)
-                {
-                    info.FinalPrice = item.Qtde * item.Product.Price + info.FinalPrice;
-                }
-            }
-            return Ok(dto);
-
-        }
-
-
+            => Ok(await _service.GetTypesAsync());
     }
 }

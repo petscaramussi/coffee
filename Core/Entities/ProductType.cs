@@ -4,7 +4,7 @@ namespace Core.Entities
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public string imgUrl { get; set; }
+        public string ImgUrl { get; set; }
 
         public virtual ICollection<Product> Products { get; set; }
     }
