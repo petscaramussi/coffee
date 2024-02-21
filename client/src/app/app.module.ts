@@ -24,6 +24,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxMaskModule } from 'ngx-mask';
 import { TextInputComponent } from './components/text-input/text-input.component';
 import { FinalComponent } from './final/final.component';
+import {MatSelectModule} from '@angular/material/select';
 
 
 @NgModule({
@@ -52,6 +53,7 @@ import { FinalComponent } from './final/final.component';
     MatFormFieldModule,
     MatButtonModule,
     FormsModule,
+    MatSelectModule,
     ReactiveFormsModule,
     NgxMaskModule.forRoot(),
   ],

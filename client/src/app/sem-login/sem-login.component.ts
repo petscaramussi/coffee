@@ -15,6 +15,15 @@ export class SemLoginComponent implements OnInit {
   pedidos: any[] = [];
   pedidosDestruct: any[] = [];
 
+  payments: any[] = [
+    {id: 1, option: "cartão debito"},
+    {id: 2, option: "cartão crédito"},
+    {id: 3, option: "vale alimentação"},
+    {id: 4, option: "pix"},
+    {id: 5, option: "dinheiro"}
+
+  ]
+
 
   // init object
   pedido: CartItem = {
