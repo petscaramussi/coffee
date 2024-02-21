@@ -44,7 +44,4 @@ Angular
 ## Recursos a serem implementados
 
 - Sistema de login
-- Painel de Admin
-- Tela de aguardo de pedido
-- Tela de confirmação final
 - Rota de pedido para usuário logado 
